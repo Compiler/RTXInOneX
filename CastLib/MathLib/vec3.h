@@ -55,7 +55,6 @@ class Vec3 {
 // point3 is just an alias for Vec3, but useful for geometric clarity in the code.
 //using point3 = Vec3;
 typedef Vec3 Point3;
-typedef Vec3 Color3;
 
 
 // Vector Utility Functions

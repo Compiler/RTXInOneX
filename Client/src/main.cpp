@@ -1,5 +1,6 @@
 #include <iostream>
 #include "vec3.h"
+#include "color.h"
 int main(){
 
     constexpr int imgWidth = 256, imgHeight = 256;
@@ -13,12 +14,13 @@ int main(){
         std::clog << "\rScanlines remaining: " << (imgHeight - r) << ' ' << std::flush;
         for(int c = 0; c < imgWidth; c++){
             // For each cell, we need an rgb output
-            int red = 255.99 * (double)(r / (double)imgHeight);
-            int green = 255.99 * (double)(c / (double)imgWidth);
-            int blue = 255.99 * (double)((r+c) / (double)(imgHeight + imgWidth));
-            std::cout << red << ' ' << green << ' '<< blue << ' ';
+            Color3 curCellColor = {
+                (double) r / imgHeight,
+                (double) c / imgWidth,
+                0
+            };
+            write_color(std::cout, curCellColor);
         }
-        std::cout << "\n";
     }
     std::clog << "\rDone.                 \n";
 }
