@@ -1,6 +1,14 @@
 #include <iostream>
 #include <vec3.h>
 #include <color.h>
+#include <ray.h>
+
+Color3 ray_color(const Ray& r) {
+    Vec3 unit_direction = unit_vector(r.direction());
+    auto a = 0.5*(unit_direction.y() + 1.0);
+    return (1.0-a)*Color3(1.0, 1.0, 1.0) + a*Color3(0.5, 0.7, 1.0);
+}
+
 int main(){
 
     int imgWidth = 512;
@@ -22,12 +30,14 @@ int main(){
         std::clog << "\rScanlines remaining: " << (imgHeight - r) << ' ' << std::flush;
         for(int c = 0; c < imgWidth; c++){
             // For each cell, we need an rgb output
-            Color3 curCellColor = {
-                r < imgHeight / 4 ? 0 : (double) r / imgHeight,
-                c < imgWidth / 4 ? 0 :(double) c / imgWidth,
-                0
-            };
-            write_color(std::cout, curCellColor);
+            Vec3 direction = {
+                static_cast<_PrecisionType>(r),
+                static_cast<_PrecisionType>(c),
+                static_cast<_PrecisionType>(-1)};
+
+            Ray outputRay = Ray(cameraPosition, direction);
+            Color3 resultingPixelColor = ray_color(outputRay);
+            write_color(std::cout, resultingPixelColor);
         }
     }
     std::clog << "\rDone.                 \n";

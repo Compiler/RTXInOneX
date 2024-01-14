@@ -12,8 +12,11 @@ private:
 
 public:
     Ray() = default;
-    Ray(Point3 origin, Point3 direction): _origin(origin), _direction(direction){}
+   // Ray(Point3 origin, Point3 direction): _origin(origin), _direction(direction){}
     Ray(Point3& origin, Point3& direction): _origin(origin), _direction(direction){}
+
+    const Point3& direction() const { return this->_direction; }
+    const Point3& origin() const { return this->_origin; }
 
     Point3 at(_PrecisionType t){
         return _origin + _direction * t;
