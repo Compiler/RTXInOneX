@@ -1,6 +1,6 @@
 #include <iostream>
-#include "vec3.h"
-#include "color.h"
+#include <vec3.h>
+#include <color.h>
 int main(){
 
     constexpr int imgWidth = 256, imgHeight = 256;
