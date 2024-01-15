@@ -6,7 +6,7 @@
 Color3 ray_color(const Ray& r) {
     Vec3 unit_direction = unit_vector(r.direction());
     auto a = 0.5*(unit_direction.y() + 1.0);
-    return (1.0-a)*Color3(1.0, 1.0, 1.0) + a*Color3(0.5 / 10.0, 0.7 / 10.0, 1.0 / 10.0);
+    return (1.0-a)*Color3(1.0, 1.0, 1.0) + a*Color3(0.5, 0.7, 1.0);
 }
 
 int main(){
@@ -21,7 +21,7 @@ int main(){
     _PrecisionType vvpWidth = vvpHeight * vvpWidth / (_PrecisionType)imgHeight;
 
     Vec3 vvpU = {vvpWidth, 0, 0};
-    Vec3 vvpV = {0, vvpHeight, 0};
+    Vec3 vvpV = {0, -vvpHeight, 0};
 
     Vec3 deltaU = vvpU / imgWidth;
     Vec3 deltaV = vvpV / imgHeight;
